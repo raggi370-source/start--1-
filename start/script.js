@@ -59,7 +59,7 @@ const utenti = [
 
 /* ESERCIZIO 1 — Arrow function compatta
    Riscrivi questa funzione come arrow function in forma compatta:
-     function quadrato(n) { return n * n; }
+	 function quadrato(n) { return n * n; }
    Chiamala con quadrato(5) e stampa il risultato.
 
 */
@@ -80,16 +80,16 @@ const quadrato = (n) => {
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 const persona = {
-	nome: "giorgio",
-	cognome: "mattone",
-	eta:33,
-	citta:"roma",
+	nom: "giorgio",
+	cognom: "mattone",
+	et: 33,
+	citta: "roma",
 }
 
-const {nome,cognome,eta}=persona
-console.log(nome)
-console.log(cognome)
-console.log(eta)
+const { nom, cognom, et } = persona
+console.log(nom)
+console.log(cognom)
+console.log(et)
 
 
 
@@ -101,9 +101,14 @@ console.log(eta)
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
-const riepilogo =(utenti)=>{
-	return `${nome} ${cognome} ed a ${eta}` 
+const riepilogo = ({ nome, cognome, eta }) => {
+	return `${nome} ${cognome} (${eta} anni)`
 }
+
+// Chiamate da stampare
+console.log(riepilogo(utenti[0]));
+console.log(riepilogo(utenti[1]));
+console.log(riepilogo(utenti[2]));
 
 
 
@@ -116,6 +121,17 @@ const riepilogo =(utenti)=>{
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const numeri = [1, 2, 3];
+
+const copia = [...numeri];
+
+copia.push(99);
+console.log(numeri);
+console.log(copia);
+
+
+
+
 
 /* ESERCIZIO 5 — Spread per concatenare
    frutti  = ["mela", "banana"]
@@ -125,6 +141,16 @@ const riepilogo =(utenti)=>{
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+const frutti = ["mela", "banana"];
+const verdure = ["carota", "spinaci"];
+
+const carello = [...frutti, ...verdure];
+console.log(carello);
+
+
+
+
+
 /* ESERCIZIO 6 — Spread su oggetto
    prodotto = { nome: "Cuffie", prezzo: 79.99 }
    Crea un nuovo oggetto con "disponibile: true" aggiunto, senza modificare prodotto.
@@ -132,6 +158,16 @@ const riepilogo =(utenti)=>{
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const prodotto = {
+	nome: "Cuffie",
+	prezzo: 79.99,
+}
+const nuovoProdotto = { ...prodotto, disponibile: true };
+
+console.log(nuovoProdotto);
+
+
+
 
 /* ESERCIZIO 7 — forEach
    Stampa tutti gli utenti nel formato "- Nome Cognome (città)".
@@ -139,6 +175,13 @@ const riepilogo =(utenti)=>{
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+utenti.forEach(element => {
+	console.log(`${element.nome} ${element.cognome} ${element.città}`)
+});
+
+
+
+
 
 /* ESERCIZIO 8 — map a stringhe
    Usa map per creare nomiCompleti = ["Mario Rossi", "Anna Bianchi", ...].
@@ -146,6 +189,13 @@ const riepilogo =(utenti)=>{
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const nomiCompleti = utenti.map(element => {
+	return `${element.nome} ${element.cognome}`;
+})
+
+
+console.log(nomiCompleti);
 
 /* ESERCIZIO 9 — map a oggetti
    Usa map per creare utentiPlus: array di oggetti dove ogni utente ha tutte
@@ -157,12 +207,30 @@ const riepilogo =(utenti)=>{
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+
+const utentiPlus = utenti.map(element => ({
+  ...element,
+  descrizione: `${element.nome} ${element.cognome}, ${element.citta}`
+}));
+
+console.log(utentiPlus[0]);
+
+
+
+
 /* ESERCIZIO 10 — filter attivi
    Usa filter per ottenere solo gli utenti con attivo: true.
    Stampa l'array risultante.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const dovesono = utenti.filter(element => {
+	return element.attivo === true
+});
+console.log(dovesono);
+
+
+
 
 /* ESERCIZIO 11 — filter combinato
    Usa filter per ottenere solo gli utenti maggiorenni (eta >= 18) che vivono a Milano.
@@ -170,6 +238,13 @@ const riepilogo =(utenti)=>{
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const maggiorenni = utenti.filter(element => {
+	return element.età >= 18 && element.città === "Milano"
+})
+
+console.log(maggiorenni)
+
+
 
 /* ESERCIZIO 12 — find
    Usa find per trovare il primo utente con id === 4.
@@ -178,12 +253,28 @@ const riepilogo =(utenti)=>{
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
+const trova = utenti.find(element => {
+	return element.id === 4
+})
+
+console.log(trova)
+
+
+
 /* ESERCIZIO 13 — reduce
    a) Usa reduce per calcolare l'età media (somma età / numero utenti). Stampa.
    b) Usa reduce per contare il numero di utenti attivi. Stampa.
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const somma = utenti.reduce((acc, element) => {
+	return (acc + element.età);
+}, 0);
+
+const media = somma / utenti.length;
+console.log(`l'età media e: ${media}`)
+
+
 
 /* ESERCIZIO 14 — sort
    a) Ordina gli utenti per eta crescente. Stampa l'array di nomi nell'ordine.
@@ -191,6 +282,12 @@ const riepilogo =(utenti)=>{
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const ordine = utenti.sort((element1, element2) => {
+	return element1.eta - element2.eta;
+})
+
+const uala = ordine.map(el => el.nome);
+console.log("Nomi per età crescente:", uala);
 
 /* ESERCIZIO 15 — Chaining
    Componi una catena di metodi che:
@@ -201,3 +298,11 @@ const riepilogo =(utenti)=>{
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+
+const risultato = utenti
+	.filter(el => el.attivo === true)
+ 	.map(el => `${nome} ${cognome}`)
+	.sort((a, b) => a.localeCompare(b));
+
+
+console.log("risultato", risultato)
