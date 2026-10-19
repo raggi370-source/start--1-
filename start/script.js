@@ -61,9 +61,16 @@ const utenti = [
    Riscrivi questa funzione come arrow function in forma compatta:
      function quadrato(n) { return n * n; }
    Chiamala con quadrato(5) e stampa il risultato.
+
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const quadrato = (n) => {
+	return n * n
+}
+
+
+
 
 /* ESERCIZIO 2 — Destructuring di oggetto
    Crea un oggetto "persona" con almeno 4 properties (es. nome, cognome, eta, città).
@@ -72,6 +79,20 @@ const utenti = [
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const persona = {
+	nome: "giorgio",
+	cognome: "mattone",
+	eta:33,
+	citta:"roma",
+}
+
+const {nome,cognome,eta}=persona
+console.log(nome)
+console.log(cognome)
+console.log(eta)
+
+
+
 
 /* ESERCIZIO 3 — Destructuring nei parametri
    Scrivi una arrow function "riepilogo" che riceve un utente e ritorna
@@ -80,6 +101,13 @@ const utenti = [
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+const riepilogo =(utenti)=>{
+	return `${nome} ${cognome} ed a ${eta}` 
+}
+
+
+
+
 
 /* ESERCIZIO 4 — Spread su array
    Crea numeri = [1, 2, 3].
